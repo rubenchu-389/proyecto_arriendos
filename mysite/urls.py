@@ -19,5 +19,6 @@ from django.urls import path, include
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path('', include('m7_python.urls')),
+    path('', include('m7_python.urls')), # nombre de la aplicacion 
+    
 ]
