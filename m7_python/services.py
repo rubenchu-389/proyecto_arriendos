@@ -1,6 +1,7 @@
 from m7_python.models import Comuna, Inmueble, UserProfile
 from django.contrib.auth.models import User     
 from django.db.utils import IntegrityError
+from django.db.models import Q
 
 
 
@@ -104,3 +105,12 @@ def cambio_password(request, password:str, password_repeat:str):
     request.user.save()
     # messages.success(request, 'Contraseña actualizada exitosamente')
     return True
+
+
+
+def obtener_propiedades_comunas(filtro): # recibe nombre o descripción
+    if filtro is None:  
+        return Inmueble.objects.all().order_by('comuna') # Entrega un objeto, al poner .value() entrega un diccionario
+    # Si llegamos, hay un filtro
+    return Inmueble.objects.filter(Q(nombre__icontains=filtro) | Q(descripcion__icontains=filtro) ).order_by('comuna')  
+
