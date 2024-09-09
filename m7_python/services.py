@@ -2,6 +2,7 @@ from m7_python.models import Comuna, Inmueble, UserProfile
 from django.contrib.auth.models import User     
 from django.db.utils import IntegrityError
 from django.db.models import Q
+from django.db import connection
 
 
 
@@ -113,4 +114,29 @@ def obtener_propiedades_comunas(filtro): # recibe nombre o descripción
         return Inmueble.objects.all().order_by('comuna') # Entrega un objeto, al poner .value() entrega un diccionario
     # Si llegamos, hay un filtro
     return Inmueble.objects.filter(Q(nombre__icontains=filtro) | Q(descripcion__icontains=filtro) ).order_by('comuna')  
+
+
+
+def obtener_propiedades_regiones(filtro):
+    consulta = '''
+    select I.nombre, I.descripcion, R.nombre as region from m7_python_inmueble as I
+    join m7_python_comuna as C on I.comuna_id = C.cod
+    join m7_python_region as R on C.region_id = R.cod
+    order by R.cod;
+    '''
+    if filtro is not None:
+        filtro = filtro.lower()
+        consulta = f'''
+        select I.nombre, I.descripcion, R.nombre as region from m7_python_inmueble as I
+        join m7_python_comuna as C on I.comuna_id = C.cod
+        join m7_python_region as R on C.region_id = R.cod where lower(I.nombre) like '%{filtro}%' or lower(I.descripcion) like '%{filtro}%'
+        order by R.cod;
+        '''
+    cursor = connection.cursor()
+    cursor.execute(consulta)
+    registros = cursor.fetchall() # LAZY LOADING
+    return registros
+
+
+
 
