@@ -3,6 +3,9 @@ from django.contrib.auth.models import User
 from django.db.utils import IntegrityError
 from django.db.models import Q
 from django.db import connection
+from django.contrib import messages
+
+
 
 
 
@@ -48,8 +51,9 @@ def editar_inmueble(inmueble_id:int, nombre:str, descripcion:str, m2_construidos
 
 
 
-def crear_user(username:str, first_name:str, last_name:str, email:str, password:str, pass_confirm:str, direccion:str, rol:str='arrendatario', telefono:str=None) -> bool:
+def crear_user(request, username:str, first_name:str, last_name:str, email:str, password:str, pass_confirm:str, direccion:str, rol:str='arrendatario', telefono:str=None) -> bool:
     if password != pass_confirm:
+        messages.error(request, 'Contraseñas incorrectas')
         return False
     try:
         user = User.objects.create_user(
@@ -60,16 +64,18 @@ def crear_user(username:str, first_name:str, last_name:str, email:str, password:
             last_name=last_name,
         )
     except IntegrityError:
+        messages.error(request, 'Rut ya ingresado')
         return False
     UserProfile.objects.create(
         direccion=direccion,
         telefono_personal=telefono,
         rol = rol,
-        user=user
-    )
+        user=user,
+        )
+    messages.success(request, 'Usuario ingresado con exito, favor ingresar')
     return True
 
-
+ 
 
 def eliminar_inmueble(inmueble_id):
     inmueble_encontrado = Inmueble.objects.get(id=inmueble_id)

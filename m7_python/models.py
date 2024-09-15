@@ -48,7 +48,7 @@ class Inmueble(models.Model):
     num_habitaciones = models.IntegerField(validators=[MinValueValidator(0)], default=0)
     num_baños = models.IntegerField(validators=[MinValueValidator(0)], default=0)
     direccion = models.CharField(max_length=300)
-    precio_mensual_arriendo = models.IntegerField(validators=[MinValueValidator(3000)])
+    precio_mensual_arriendo = models.IntegerField(validators=[MinValueValidator(1000)])
     tipo_de_inmueble = models.CharField(max_length=20, choices=inmuebles)
     comuna = models.ForeignKey(
         Comuna,
