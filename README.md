@@ -38,6 +38,13 @@
 
 ### Hito-4
 
+14 ° Creacion de  página web donde  los arrendadores puedan agregar nuevos inmuebles.
+    * Se crean los campos para el cambio de las contraeñas de los usuarios 
+    * Se generan las rutas para agregar nuevos inmuebles.
+    * Se generan los  formularios.
+    * Se agregan las funciones para guardar los objetos. 
+
+
 
 
 
