@@ -48,6 +48,8 @@
 17° Se agregan modelos en el adminstrador para que pueda ver los inmuebles, las comunas y los 
     userprofile
 
+18° Se crean funciones y el formulario para editar y borrar los inmuebles del usuario 
+
 
 
 
