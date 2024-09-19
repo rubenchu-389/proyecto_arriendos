@@ -8,7 +8,12 @@ from m7_python.models import Inmueble, Region, Comuna
     
     
 def index(request):
-        return render(request, 'index.html')
+    propiedades = Inmueble.objects.all()
+    context = {
+        'propiedades': propiedades
+    }
+    
+    return render(request, 'index.html', context)
     
 def register(request):
     if request.method == 'POST':
