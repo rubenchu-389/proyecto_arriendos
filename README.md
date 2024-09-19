@@ -39,9 +39,11 @@
 ### Hito-4
 
 14 ° Creacion de  página web donde  los arrendadores puedan agregar nuevos inmuebles.
-    ° Se crean los campos para el cambio de las contraeñas de los usuarios.
-    ° Se crean  las rutas para agregar nuevos inmuebles y se agrega en el template 
-      el archivo add_propiedad para agregar los inmuebles. 
+
+15°  Se crean los campos para el cambio de las contraeñas de los usuarios.
+
+16°  Se crean  las rutas para agregar nuevos inmuebles y se agrega en el template el 
+     archivo add_propiedad para agregar los inmuebles. 
     
 
 

@@ -135,3 +135,4 @@ def add_propiedad(request):
         return render(request, 'add_propiedad.html', context)
     
     
+   
