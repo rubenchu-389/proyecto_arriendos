@@ -45,6 +45,9 @@
 16°  Se crean  las rutas para agregar nuevos inmuebles y se agrega en el template el 
      archivo add_propiedad para agregar los inmuebles. 
     
+17° Se agregan modelos en el adminstrador para que pueda ver los inmuebles, las comunas y los 
+    userprofile
+
 
 
 

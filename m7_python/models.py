@@ -16,7 +16,15 @@ class UserProfile(models.Model):
         related_name='userprofile', 
         on_delete=models.CASCADE
     )
- 
+    def __str__(self):
+        nombre = self.user.first_name
+        apellido = self.user.last_name
+        usuario = self.user.username
+        rol = self.rol
+        return f'{nombre} {apellido} | {usuario} | {rol}'
+
+   
+
  
  
 class Region(models.Model):
@@ -33,6 +41,10 @@ class Comuna(models.Model):
         on_delete=models.RESTRICT,
         related_name='comunas'
     )
+    def __str__(self):
+        nombre = self.nombre
+        codigo = self.cod
+        return f'{nombre} | {codigo}'
  
 class Inmueble(models.Model):
     inmuebles = (
@@ -60,6 +72,11 @@ class Inmueble(models.Model):
         related_name='inmueble',
         on_delete=models.RESTRICT
     )
+    def __str__(self):
+        nombre = self.nombre
+        comuna = self.comuna
+        tipo_inmueble = self.tipo_de_inmueble
+        return f'{nombre} {comuna} | {tipo_inmueble}'
     
     
     
