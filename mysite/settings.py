@@ -21,9 +21,6 @@ db_user = os.getenv('DB_USER')
 db_password = os.getenv('DB_PASSWORD')
 
 
-
-
-
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
 
@@ -38,7 +35,7 @@ SECRET_KEY = 'django-insecure-e2-@3nkq971ik-h-)55%6ixqo%^&2w5kpa@q^2uu)n45d#tny-
 DEBUG = True
 
 ALLOWED_HOSTS = []
-
+ 
 
 # Application definition
 
