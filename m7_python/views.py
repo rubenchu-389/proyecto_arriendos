@@ -1,5 +1,5 @@
 from django.shortcuts import render, redirect
-from m7_python.services import crear_user, editar_user_sin_password, cambio_password, crear_inmueble, editar_inmueble, eliminar_inmueble
+from m7_python.services import crear_user, editar_user_sin_password, cambio_password, crear_inmueble, editar_inmueble, eliminar_inmueble, filtro_comuna_region
 from django.contrib import messages
 from django.contrib.auth.decorators import login_required
 from m7_python.models import Inmueble 
@@ -8,8 +8,22 @@ from m7_python.models import Inmueble, Region, Comuna
     
     
 def index(request):
+     # Recibe información vía get:
     propiedades = Inmueble.objects.all()
+    datos = request.GET
+    comuna_cod = datos.get('comuna_cod', '')
+    region_cod = datos.get('region_cod', '')
+    tipo_inmueble = datos.get('tipo_inmueble', '')
+
+    propiedades = filtro_comuna_region(comuna_cod, region_cod, tipo_inmueble)
+    
+    comunas = Comuna.objects.all().order_by('nombre')
+    regiones = Region.objects.all()
+    tipos_inmuebles = Inmueble.inmuebles
     context = {
+        'comunas' : comunas,
+        'regiones' : regiones, 
+        'tipos_inmuebles': tipos_inmuebles,
         'propiedades': propiedades
     }
     
