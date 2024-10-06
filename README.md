@@ -52,8 +52,10 @@
 
 19° Se crea filtro para selccionar por region, comuna, inmueble en el service
 
+20° Se agrega logo de " For Rent "  en el navbar para tener  mas estilo
 
 
+ 
 Link: https://github.com/rubenchu-389/proyecto_arriendos.git
 
 
